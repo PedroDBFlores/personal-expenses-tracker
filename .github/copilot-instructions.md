@@ -46,7 +46,7 @@ The application uses the following model for expenses:
 The application uses SQLite as the database for storing expenses. The database schema is autogenerate by GORM.
 
 # Backend API (Golang)
-The backend API is built using Golang and serves as the server-side component of the application. It lives on the `api/` directory.
+The backend API is built using Golang and serves as the server-side component of the application. It lives on the `api/` directory. Golang version required is 1.24.
 It uses the following libraries:
 - `fiber`: A web framework for building APIs in Golang.
 - `gorm`: An ORM for Golang to interact with the SQLite database.
@@ -107,6 +107,16 @@ The API should have the following endpoints:
 ## Testing
 The backend API should be tested using the `testing` package in Golang, alongside `stretchr/testify` for assertions and mocking.
 The tests should be written on a _test.go file in the same package as the code being tested.
+
+## Deployment
+The backend API can be deployed using Docker. A `Dockerfile` is provided in the `api/` directory to build the Docker image. The image can be run using the following command:
+```bash
+docker build -t personal-expenses-tracker-api .
+docker run -p 8080:8080 personal-expenses-tracker-api
+```
+
+The image should be multistaged to reduce the final image size. The first stage should build the application, and the second stage should copy the built binary to a minimal base image.
+The minimal base image should be `scratch`. The Dockerfile should also include the necessary environment variables for the application to run, such as the database connection string.
 
 # Frontend Application (React)
 The frontend application is built using React and serves as the client-side component of the application, using Typescript for type safety. It lives on the `client/` directory.
