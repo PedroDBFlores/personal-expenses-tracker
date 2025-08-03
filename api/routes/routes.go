@@ -27,10 +27,16 @@ func Setup(app *fiber.App) {
 	updateExpensesHandler := handlers.NewUpdateExpenseHandler(updateExpensesUC)
 	deleteExpensesHandler := handlers.NewDeleteExpenseHandler(deleteExpensesUC)
 
-	api := app.Group("/expenses")
-	api.Get("/", getExpensesHandler.Handle)
-	api.Post("/", createExpensesHandler.Handle)
-	api.Get("/search", searchExpensesHandler.Handle)
-	api.Put("/:id", updateExpensesHandler.Handle)
-	api.Delete("/:id", deleteExpensesHandler.Handle)
+	api := app.Group("/api")
+
+	api.Get("/health", func(c *fiber.Ctx) error {
+		return c.SendString("OK")
+	})
+
+	expenses := api.Group("/expenses")
+	expenses.Get("/", getExpensesHandler.Handle)
+	expenses.Post("/", createExpensesHandler.Handle)
+	expenses.Get("/search", searchExpensesHandler.Handle)
+	expenses.Put("/:id", updateExpensesHandler.Handle)
+	expenses.Delete("/:id", deleteExpensesHandler.Handle)
 }

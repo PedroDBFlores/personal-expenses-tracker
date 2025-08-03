@@ -90,7 +90,7 @@ func (h *ExpenseHandler) GetExpenses(c *fiber.Ctx) error {
 - Use cases should be defined in the `usecases/` directory, which contains the business logic and service layer.
 - Models should be defined in the `models/` directory, which contains the data models and database interactions.
 - Adapters should be defined in the `adapters/` directory, which contains the implementation of the ports and use cases.
-- Routes should be defined in the `routes/` directory, which contains the API routes and middleware.
+- Routes should be defined in the `routes/` directory, which contains the API routes and middleware. All routes should be prefixed with `/api`.
 
 Note: Each use case should have its own file in the `usecases/` directory, and the file name should match the use case name. For example, `create_expense.go` for creating an expense, `get_all_expenses.go` for getting all expenses, etc.
 Note: Each handler should have its own file in the `adapters/web/` directory, and the file name should match the handler name. For example, `expense_handler.go` for handling expense-related operations.
