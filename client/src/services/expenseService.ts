@@ -1,7 +1,8 @@
 // API service for expenses
 import type { Expense, ExpenseInput, ExpenseSearchQuery } from '../types/expense';
 
-const API_BASE = '/api/expenses';
+// Use Vite env variable, fallback to default if not set
+const API_BASE = import.meta.env.VITE_API_EXPENSES_BASE ?? '/api/expenses';
 
 export async function getExpenses(): Promise<Expense[]> {
   const res = await fetch(API_BASE);
