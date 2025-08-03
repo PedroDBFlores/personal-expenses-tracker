@@ -123,6 +123,7 @@ The frontend application is built using React and serves as the client-side comp
 We can bootstrap it by using `vite` with the `react-ts` template.
 It uses the following libraries:
 - `react`: The core library for building user interfaces.
+- `react-router`: For routing and navigation within the application.
 - `react-router-dom`: For routing and navigation within the application.
 - `fetch`: For making HTTP requests to the backend API.
 - `Material-UI`: A popular React UI framework for building responsive and modern user interfaces.
