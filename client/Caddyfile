@@ -1,0 +1,7 @@
+:80
+
+root * /usr/share/caddy
+file_server
+
+# Support client-side routing (React Router)
+try_files {path} /index.html

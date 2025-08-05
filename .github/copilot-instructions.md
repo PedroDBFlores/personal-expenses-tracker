@@ -132,6 +132,16 @@ It uses the following libraries:
 The frontend application should be tested using `Vitest` and `React Testing Library`.
 The tests should be written in a `*.test.ts` file in the same directory as the component being tested.
 
+## Deployment
+The frontend application can be deployed using Docker. A `Dockerfile` is provided in the `client/` directory to build the Docker image. The image can be run using the following command:
+```bash
+docker build -t personal-expenses-tracker-client .
+docker run -p 3000:3000 personal-expenses-tracker-client
+```
+The image should be multistaged to reduce the final image size. The first stage should build the application, and the second stage should copy the built binary to a minimal base image.
+The minimal base image should be based on `caddy` to serve the static files. The Dockerfile should also include the necessary environment variables for the application to build properly, such as the API base URL.
+
+
 # Notes for Copilot
 - Never suggest code changes to tests that make them pass without proper assertions.
 - Ensure that when writing Go files, you only have one package name per file, and it matches the directory name.
