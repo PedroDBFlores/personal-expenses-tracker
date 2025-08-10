@@ -104,9 +104,19 @@ The API should have the following endpoints:
 - `DELETE /expenses/:id`: Deletes a specific expense by ID.
 - `POST /expenses/search`: Searches for expenses based on a query. The query can include filters such as date range, amount range, and expense type.
 
+NOTE: POST endpoints that create a resource should return a JSON comprised only by the id of the created resource, and a 201 status code. For example, when creating an expense, the response should be:
+```json
+{
+    "id": 1
+}
+```
+
 ## Testing
 The backend API should be tested using the `testing` package in Golang, alongside `stretchr/testify` for assertions and mocking.
-The tests should be written on a _test.go file in the same package as the code being tested.
+The tests should be written on a _test.go file in the same package as the code being tested, one for each file, and should follow the naming convention `*_test.go`. For example, if you have a file named `create_expense_handler.go`, the test file should be named `create_expense_handler_test.go`.
+The tests should cover the following:
+- Handlers: Test the HTTP handlers to ensure they return the expected responses and status codes, focus on the business logic and not the HTTP layer. When testing payloads, ensure that the request and response bodies are properly structured and validated.
+- Use cases: Test the business logic and service layer to ensure they return the expected results.
 
 ## Deployment
 The backend API can be deployed using Docker. A `Dockerfile` is provided in the `api/` directory to build the Docker image. The image can be run using the following command:
@@ -145,4 +155,4 @@ The minimal base image should be based on `caddy` to serve the static files. The
 # Notes for Copilot
 - Never suggest code changes to tests that make them pass without proper assertions.
 - Ensure that when writing Go files, you only have one package name per file, and it matches the directory name.
-- When writing handlers and use cases, ensure that they are properly structured and follow the clean architecture principles, writing tests for them.
+- When writing handlers and use cases, ensure that they are properly structured and follow the clean architecture principles. Don't forget to write tests for them.

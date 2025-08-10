@@ -1,6 +1,8 @@
 package usecases
 
 import (
+	"pedro/personal-expenses-tracker/models"
+
 	"gorm.io/gorm"
 )
 
@@ -13,5 +15,5 @@ func NewDeleteExpenseUseCase(db *gorm.DB) *DeleteExpenseUseCase {
 }
 
 func (uc *DeleteExpenseUseCase) DeleteExpense(id uint) error {
-	return uc.DB.Delete(&struct{ ID uint }{ID: id}).Error
+	return uc.DB.Delete(&models.Expense{}, id).Error
 }
